@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #050505;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+/* =========================
+   HERO
+========================= */
+.hero {
+  width: 100%;
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(255, 80, 0, 0.25),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(80, 30, 100, 0.18),
+      transparent 45%
+    ),
+    #050505;
+
+  border-bottom: 1px solid #1c1c1c;
+}
+.hero h1 {
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+
+  text-shadow: 0 2px 15px rgba(255, 255, 255, 0.08);
+}
+
+.hero p {
+  color: #b8b8b8;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+
+/* =========================
+   FEATURED PRODUCTS
+========================= */
+
+.featured-products {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 45px auto;
+}
+
+.featured-products h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}

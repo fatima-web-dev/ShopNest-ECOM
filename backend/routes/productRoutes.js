@@ -1,0 +1,21 @@
+const express = require('express');
+const { Protect } = require('../middleware/authMiddleware');
+const  { admin  } = require('../middleware/adminMiddleware');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // Specify the destination folder for uploaded files
+
+const { getAllProducts,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct } = require('../controllers/productController');
+
+const router = express.Router();
+ //all products
+
+ router.route('/').get(getAllProducts).post(Protect, admin, upload.single('image'), createProduct);
+
+ //specific product
+ router.route('/:id').get(getProductById).put(Protect, admin, upload.single('image'), updateProduct).delete(Protect, admin, deleteProduct);
+
+ module.exports = router;

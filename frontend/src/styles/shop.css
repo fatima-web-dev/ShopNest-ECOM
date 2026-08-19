@@ -1,0 +1,217 @@
+/* =========================
+   SHOP PAGE
+========================= */
+
+.shop-page {
+  min-height: 100vh;
+  padding: 40px 60px 70px;
+  background: #090909;
+  color: white;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.shop-page .shop-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.shop-page .shop-header h1 {
+  font-size: 38px;
+  color: #ff8a00;
+  margin: 0 0 8px;
+}
+
+.shop-page .shop-header p {
+  color: #aaa;
+  font-size: 16px;
+  margin: 0;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.shop-page .category-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.shop-page .category-btn {
+  padding: 9px 20px;
+  border: 1px solid #444;
+  background: #151515;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.shop-page .category-btn:hover {
+  border-color: #ff8a00;
+  color: #ff8a00;
+}
+
+.shop-page .category-btn.active {
+  background: #ff8a00;
+  border-color: #ff8a00;
+  color: white;
+}
+
+
+/* =========================
+   SHOP PRODUCTS GRID
+========================= */
+
+.shop-page .products-grid {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 25px;
+}
+
+
+/* =========================
+   SHOP PRODUCT CARD
+========================= */
+
+.shop-page .product-card {
+  width: 100%;
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 15px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  transition: transform 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.shop-page .product-card:hover {
+  transform: translateY(-6px);
+  border-color: #ff8a00;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.shop-page .product-image {
+  width: 100%;
+  height: 230px;
+  display: block;
+  object-fit: cover;
+  background: #222;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.shop-page .product-info {
+  padding: 18px;
+}
+
+.shop-page .product-category {
+  color: #ff8a00;
+  font-size: 13px;
+}
+
+.shop-page .product-info h2 {
+  font-size: 19px;
+  margin: 7px 0;
+  color: white;
+}
+
+.shop-page .product-price {
+  font-size: 19px;
+  font-weight: bold;
+  color: #ff8500;
+  margin: 0 0 18px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.shop-page .product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.shop-page .view-btn,
+.shop-page .cart-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 7px;
+  box-sizing: border-box;
+
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.shop-page .view-btn {
+  background: transparent;
+  border: 1px solid #ff8a00;
+  color: #ff8a00;
+  text-decoration: none;
+}
+
+.shop-page .view-btn:hover {
+  background: #ff8a00;
+  color: white;
+}
+
+.shop-page .cart-btn {
+  border: none;
+  background: #ff8a00;
+  color: white;
+}
+
+.shop-page .cart-btn:hover {
+  background: #ff7200;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .shop-page {
+    padding: 35px 30px 60px;
+  }
+
+  .shop-page .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .shop-page {
+    padding: 30px 20px 50px;
+  }
+
+  .shop-page .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
