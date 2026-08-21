@@ -14,37 +14,46 @@ const AdminSales = () => {
   // FETCH ORDERS
   // =========================
 
-  const fetchOrders = async () => {
-    try {
-      const response = await fetch(
-        `${API_URL}/api/orders`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      console.log("Sales Orders:", data);
-
-      if (response.ok) {
-        setOrders(data);
-      } else {
-        console.error("Fetch Orders Error:", data);
-      }
-    } catch (error) {
-      console.error("Sales Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (user?.token) {
-      fetchOrders();
-    }
+    const loadOrders = async () => {
+      if (!user?.token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${API_URL}/api/orders`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        console.log("Sales Orders:", data);
+
+        if (response.ok) {
+          setOrders(data);
+        } else {
+          console.error(
+            "Fetch Orders Error:",
+            data
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Sales Error:",
+          error
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadOrders();
   }, [user]);
 
   // =========================
@@ -264,4 +273,5 @@ const AdminSales = () => {
 };
 
 export default AdminSales;
+
 

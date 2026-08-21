@@ -14,35 +14,44 @@ const AdminUsers = () => {
   // FETCH USERS
   // =========================
 
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch(
-        `${API_URL}/api/auth/users`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setUsers(data);
-      } else {
-        console.error("Fetch Users Error:", data);
-      }
-    } catch (error) {
-      console.error("Users Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    if (user?.token) {
-      fetchUsers();
-    }
+    const loadUsers = async () => {
+      if (!user?.token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${API_URL}/api/auth/users`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setUsers(data);
+        } else {
+          console.error(
+            "Fetch Users Error:",
+            data
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Users Error:",
+          error
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUsers();
   }, [user]);
 
   // =========================
@@ -70,7 +79,10 @@ const AdminUsers = () => {
 
         <div>
           <h1>Total Users</h1>
-          <p>Manage registered users</p>
+
+          <p>
+            Manage registered users
+          </p>
         </div>
 
         <div className="total-users-badge">

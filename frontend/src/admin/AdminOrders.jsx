@@ -10,33 +10,44 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchOrders = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/orders`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setOrders(data);
-      } else {
-        alert(data.message || "Failed to fetch orders");
-      }
-    } catch (error) {
-      console.error("Fetch Orders Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // =========================
+  // FETCH ORDERS
+  // =========================
 
   useEffect(() => {
-    if (user?.token) {
-      fetchOrders();
-    }
+    const loadOrders = async () => {
+      if (!user?.token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_URL}/api/orders`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          setOrders(data);
+        } else {
+          alert(data.message || "Failed to fetch orders");
+        }
+      } catch (error) {
+        console.error("Fetch Orders Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadOrders();
   }, [user]);
+
+  // =========================
+  // UPDATE ORDER STATUS
+  // =========================
 
   const updateStatus = async (orderId, status) => {
     try {
@@ -70,6 +81,10 @@ const AdminOrders = () => {
     }
   };
 
+  // =========================
+  // LOADING
+  // =========================
+
   if (loading) {
     return (
       <div className="admin-orders-loading">
@@ -78,31 +93,47 @@ const AdminOrders = () => {
     );
   }
 
+  // =========================
+  // PAGE
+  // =========================
+
   return (
     <div className="admin-orders-page">
+
+      {/* HEADER */}
 
       <div className="admin-orders-header">
         <h1>Orders</h1>
         <p>Manage all customer orders</p>
       </div>
 
+
+      {/* ORDERS */}
+
       {orders.length === 0 ? (
+
         <div className="no-orders">
           <h2>No Orders Found</h2>
           <p>There are currently no customer orders.</p>
         </div>
+
       ) : (
+
         <div className="orders-list">
 
           {orders.map((order) => (
+
             <div
               className="admin-order-card"
               key={order._id}
             >
 
+              {/* ORDER TOP */}
+
               <div className="order-top">
 
                 <div>
+
                   <h3>
                     Order #{order._id.slice(-6).toUpperCase()}
                   </h3>
@@ -117,7 +148,11 @@ const AdminOrders = () => {
                   <p>
                     Email: {order.user?.email || "N/A"}
                   </p>
+
                 </div>
+
+
+                {/* STATUS */}
 
                 <div className="order-status">
 
@@ -132,6 +167,7 @@ const AdminOrders = () => {
                       )
                     }
                   >
+
                     <option value="pending">
                       Pending
                     </option>
@@ -151,17 +187,22 @@ const AdminOrders = () => {
                     <option value="cancelled">
                       Cancelled
                     </option>
+
                   </select>
 
                 </div>
 
               </div>
 
+
+              {/* PRODUCTS */}
+
               <div className="order-products">
 
                 <h4>Products</h4>
 
                 {order.products?.map((item, index) => (
+
                   <div
                     className="order-product"
                     key={index}
@@ -180,9 +221,13 @@ const AdminOrders = () => {
                     </span>
 
                   </div>
+
                 ))}
 
               </div>
+
+
+              {/* ORDER BOTTOM */}
 
               <div className="order-bottom">
 
@@ -207,9 +252,11 @@ const AdminOrders = () => {
               </div>
 
             </div>
+
           ))}
 
         </div>
+
       )}
 
     </div>
@@ -217,4 +264,3 @@ const AdminOrders = () => {
 };
 
 export default AdminOrders;
-
