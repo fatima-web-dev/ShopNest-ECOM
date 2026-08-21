@@ -1,0 +1,277 @@
+.footer {
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(255, 80, 0, 0.10),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(80, 30, 100, 0.10),
+      transparent 40%
+    ),
+    #050505;
+
+  color: #ffffff;
+  border-top: 1px solid #1c1c1c;
+  margin-top: 50px;
+}
+
+
+/* =========================
+   Main Footer
+========================= */
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 55px 40px 40px;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+}
+
+
+/* =========================
+   Footer Sections
+========================= */
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ShopNest */
+
+.footer-about h2 {
+  color: #ff7a00;
+  font-size: 25px;
+  margin: 0 0 12px;
+}
+
+.footer-about p {
+  color: #999999;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+
+/* Headings */
+
+.footer-section h3 {
+  color: #ffffff;
+  font-size: 17px;
+  margin: 0 0 18px;
+}
+
+
+/* Links */
+
+.footer-section a {
+  width: fit-content;
+  color: #999999;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+
+  transition: 0.3s;
+}
+
+.footer-section a:hover {
+  color: #ff7a00;
+  transform: translateX(4px);
+}
+
+
+/* =========================
+   Social Links
+========================= */
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.footer-social a {
+  color: #777777;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.footer-social a:hover {
+  color: #ff7a00;
+}
+
+
+/* =========================
+   Contact
+========================= */
+
+.footer-contact p {
+  color: #999999;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+
+/* =========================
+   Newsletter
+========================= */
+
+.footer-newsletter {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 25px 40px;
+
+  border-top: 1px solid #1c1c1c;
+  border-bottom: 1px solid #1c1c1c;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-newsletter h3 {
+  color: #ffffff;
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.footer-newsletter p {
+  color: #777777;
+  font-size: 13px;
+  margin: 0;
+}
+
+
+/* Newsletter Form */
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter-form input {
+  width: 240px;
+  padding: 11px 14px;
+
+  background: #0d0d0d;
+  color: #ffffff;
+
+  border: 1px solid #292929;
+  border-radius: 6px;
+
+  outline: none;
+}
+
+.newsletter-form input::placeholder {
+  color: #666666;
+}
+
+.newsletter-form input:focus {
+  border-color: #ff7a00;
+}
+
+
+/* Subscribe Button */
+
+.newsletter-form button {
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #ff7a00;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+  background: #e56700;
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   Copyright
+========================= */
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 20px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.footer-bottom p {
+  color: #555555;
+  font-size: 12px;
+  margin: 0;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-newsletter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    padding: 40px 25px;
+  }
+
+  .footer-newsletter {
+    padding: 25px;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .newsletter-form input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer-bottom {
+    padding: 20px 25px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+}

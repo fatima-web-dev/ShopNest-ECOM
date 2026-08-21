@@ -1,0 +1,113 @@
+.admin-users {
+  min-height: calc(100vh - 70px);
+  padding: 35px;
+  background: #050505;
+  color: white;
+}
+
+.admin-users-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.admin-users-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.admin-users-header p {
+  margin-top: 8px;
+  color: #999;
+}
+
+.total-users-badge {
+  background: #ff7a00;
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.users-section {
+  background: #0b0b0b;
+  border: 1px solid #1d1d1d;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.users-table-header,
+.users-table-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr 1fr;
+  align-items: center;
+  padding: 18px 22px;
+  gap: 20px;
+}
+
+.users-table-header {
+  background: #111;
+  color: #999;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.users-table-row {
+  border-top: 1px solid #1d1d1d;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.users-table-row:hover {
+  background: #101010;
+}
+
+.user-name {
+  color: white;
+  font-weight: 600;
+}
+
+.user-email {
+  color: #aaa;
+}
+
+.user-role {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-role {
+  background: #ff7a00;
+  color: #000;
+}
+
+.user-role-normal {
+  background: #222;
+  color: #ddd;
+}
+
+.user-date {
+  color: #999;
+}
+
+.admin-users-loading {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050505;
+  color: #ff7a00;
+  font-size: 18px;
+}
+
+.no-users {
+  padding: 50px;
+  text-align: center;
+  color: #888;
+}
