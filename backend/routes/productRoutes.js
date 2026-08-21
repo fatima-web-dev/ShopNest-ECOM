@@ -2,7 +2,7 @@ const express = require('express');
 const { Protect } = require('../middleware/authMiddleware');
 const  { admin  } = require('../middleware/adminMiddleware');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); // Specify the destination folder for uploaded files
+const upload = multer({ storage: multer.memoryStorage() });
 
 const { getAllProducts,
     getProductById,
