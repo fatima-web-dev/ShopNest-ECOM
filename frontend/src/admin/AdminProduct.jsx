@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import API_URL from "../api";
 import "../styles/adminProducts.css";
 
 const AdminProducts = () => {
@@ -39,12 +41,10 @@ const AdminProducts = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/products"
+        `${API_URL}/api/products`
       );
 
       const data = await response.json();
-
-      
 
       if (response.ok) {
         setProducts(data);
@@ -84,7 +84,6 @@ const AdminProducts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check login/token
     if (!user?.token) {
       alert("Please login again.");
       return;
@@ -92,10 +91,6 @@ const AdminProducts = () => {
 
     try {
       setSubmitting(true);
-
-      // =========================
-      // FORM DATA
-      // =========================
 
       const formData = new FormData();
 
@@ -105,7 +100,6 @@ const AdminProducts = () => {
       formData.append("category", category);
       formData.append("description", description);
 
-      // Image
       if (image) {
         formData.append("image", image);
       }
@@ -116,7 +110,7 @@ const AdminProducts = () => {
 
       if (editingProduct) {
         const response = await fetch(
-          `http://localhost:5000/api/products/${editingProduct._id}`,
+          `${API_URL}/api/products/${editingProduct._id}`,
           {
             method: "PUT",
 
@@ -129,8 +123,6 @@ const AdminProducts = () => {
         );
 
         const data = await response.json();
-
-       
 
         if (response.ok) {
           alert("Product updated successfully!");
@@ -151,7 +143,7 @@ const AdminProducts = () => {
 
       else {
         const response = await fetch(
-          "http://localhost:5000/api/products",
+          `${API_URL}/api/products`,
           {
             method: "POST",
 
@@ -164,8 +156,6 @@ const AdminProducts = () => {
         );
 
         const data = await response.json();
-
-        
 
         if (response.ok) {
           alert("Product added successfully!");
@@ -206,7 +196,6 @@ const AdminProducts = () => {
     setCategory(product.category || "");
     setDescription(product.description || "");
 
-    // New image only if admin selects one
     setImage(null);
 
     setShowForm(true);
@@ -232,7 +221,7 @@ const AdminProducts = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products/${id}`,
+        `${API_URL}/api/products/${id}`,
         {
           method: "DELETE",
 
@@ -243,8 +232,6 @@ const AdminProducts = () => {
       );
 
       const data = await response.json();
-
-      
 
       if (response.ok) {
         alert("Product deleted successfully!");
@@ -290,9 +277,7 @@ const AdminProducts = () => {
   return (
     <div className="admin-products">
 
-      {/* =========================
-          HEADER
-      ========================= */}
+      {/* HEADER */}
 
       <div className="admin-products-header">
 
@@ -322,9 +307,7 @@ const AdminProducts = () => {
       </div>
 
 
-      {/* =========================
-          ADD / EDIT FORM
-      ========================= */}
+      {/* ADD / EDIT FORM */}
 
       {showForm && (
         <div className="product-form-container">
@@ -453,9 +436,7 @@ const AdminProducts = () => {
                 type="file"
                 accept="image/*"
                 onChange={(e) =>
-                  setImage(
-                    e.target.files[0]
-                  )
+                  setImage(e.target.files[0])
                 }
               />
 
@@ -496,9 +477,7 @@ const AdminProducts = () => {
       )}
 
 
-      {/* =========================
-          PRODUCTS SECTION
-      ========================= */}
+      {/* PRODUCTS SECTION */}
 
       <div className="products-section">
 
@@ -664,3 +643,4 @@ const AdminProducts = () => {
 };
 
 export default AdminProducts;
+

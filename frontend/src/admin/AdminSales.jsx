@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import API_URL from "../api";
 import "../styles/adminSales.css";
 
 const AdminSales = () => {
@@ -15,7 +17,7 @@ const AdminSales = () => {
   const fetchOrders = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/orders",
+        `${API_URL}/api/orders`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -86,10 +88,15 @@ const AdminSales = () => {
       {/* HEADER */}
 
       <div className="admin-sales-header">
+
         <div>
           <h1>Total Sales</h1>
-          <p>Track your store sales and orders</p>
+
+          <p>
+            Track your store sales and orders
+          </p>
         </div>
+
       </div>
 
 
@@ -257,3 +264,4 @@ const AdminSales = () => {
 };
 
 export default AdminSales;
+

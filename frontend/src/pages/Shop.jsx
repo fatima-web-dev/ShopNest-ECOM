@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import API_URL from "../api";
 
 import "../styles/shop.css";
 
@@ -17,9 +18,9 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/products"
-        );
+const res = await fetch(
+  `${API_URL}/api/products`
+);
 
         const data = await res.json();
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import "../styles/adminDashboard.css";
 
 const AdminDashboard = () => {
@@ -19,15 +20,15 @@ const AdminDashboard = () => {
         const token = user?.token;
 
         const [usersRes, productsRes, ordersRes] = await Promise.all([
-          fetch("http://localhost:5000/api/auth/users", {
+         fetch(`${API_URL}/api/auth/users`,  {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }),
 
-          fetch("http://localhost:5000/api/products"),
+         fetch(`${API_URL}/api/products`),
 
-          fetch("http://localhost:5000/api/orders", {
+          fetch(`${API_URL}/api/orders`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

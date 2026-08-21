@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import API_URL from "../api";
 import "../styles/adminUsers.css";
 
 const AdminUsers = () => {
@@ -15,7 +17,7 @@ const AdminUsers = () => {
   const fetchUsers = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/users",
+        `${API_URL}/api/auth/users`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -65,6 +67,7 @@ const AdminUsers = () => {
       {/* HEADER */}
 
       <div className="admin-users-header">
+
         <div>
           <h1>Total Users</h1>
           <p>Manage registered users</p>
@@ -73,6 +76,7 @@ const AdminUsers = () => {
         <div className="total-users-badge">
           {users.length} Users
         </div>
+
       </div>
 
 
@@ -93,10 +97,12 @@ const AdminUsers = () => {
             {/* TABLE HEADER */}
 
             <div className="users-table-header">
+
               <span>Name</span>
               <span>Email</span>
               <span>Role</span>
               <span>Joined</span>
+
             </div>
 
 
@@ -113,11 +119,14 @@ const AdminUsers = () => {
                   {userItem.name}
                 </span>
 
+
                 <span className="user-email">
                   {userItem.email}
                 </span>
 
+
                 <span>
+
                   <span
                     className={`user-role ${
                       userItem.role === "admin"
@@ -127,14 +136,18 @@ const AdminUsers = () => {
                   >
                     {userItem.role}
                   </span>
+
                 </span>
 
+
                 <span className="user-date">
+
                   {userItem.createdAt
                     ? new Date(
                         userItem.createdAt
                       ).toLocaleDateString()
                     : "N/A"}
+
                 </span>
 
               </div>
@@ -152,3 +165,4 @@ const AdminUsers = () => {
 };
 
 export default AdminUsers;
+

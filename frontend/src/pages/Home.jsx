@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
+import API_URL from "../api";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -9,8 +10,8 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/products"
-        );
+  `${API_URL}/api/products`
+);
 
         const data = await res.json();
 

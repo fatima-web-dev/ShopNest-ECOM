@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import API_URL from "../api";
 import "../styles/adminOrders.css";
 
 const AdminOrders = () => {
@@ -10,7 +12,7 @@ const AdminOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/orders", {
+      const res = await fetch(`${API_URL}/api/orders`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -39,7 +41,7 @@ const AdminOrders = () => {
   const updateStatus = async (orderId, status) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+        `${API_URL}/api/orders/${orderId}/status`,
         {
           method: "PUT",
           headers: {
@@ -51,12 +53,13 @@ const AdminOrders = () => {
       );
 
       const data = await res.json();
-      
 
       if (res.ok) {
         setOrders((prevOrders) =>
           prevOrders.map((order) =>
-            order._id === orderId ? { ...order, status: data.status } : order
+            order._id === orderId
+              ? { ...order, status: data.status }
+              : order
           )
         );
       } else {
@@ -68,7 +71,11 @@ const AdminOrders = () => {
   };
 
   if (loading) {
-    return <div className="admin-orders-loading">Loading orders...</div>;
+    return (
+      <div className="admin-orders-loading">
+        Loading orders...
+      </div>
+    );
   }
 
   return (
@@ -88,7 +95,10 @@ const AdminOrders = () => {
         <div className="orders-list">
 
           {orders.map((order) => (
-            <div className="admin-order-card" key={order._id}>
+            <div
+              className="admin-order-card"
+              key={order._id}
+            >
 
               <div className="order-top">
 
@@ -99,7 +109,9 @@ const AdminOrders = () => {
 
                   <p>
                     Customer:{" "}
-                    <strong>{order.user?.name || "Unknown"}</strong>
+                    <strong>
+                      {order.user?.name || "Unknown"}
+                    </strong>
                   </p>
 
                   <p>
@@ -114,14 +126,31 @@ const AdminOrders = () => {
                   <select
                     value={order.status}
                     onChange={(e) =>
-                      updateStatus(order._id, e.target.value)
+                      updateStatus(
+                        order._id,
+                        e.target.value
+                      )
                     }
                   >
-                    <option value="pending">Pending</option>
-                    <option value="processing">Processing</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="cancelled">Cancelled</option>
+                    <option value="pending">
+                      Pending
+                    </option>
+
+                    <option value="processing">
+                      Processing
+                    </option>
+
+                    <option value="shipped">
+                      Shipped
+                    </option>
+
+                    <option value="delivered">
+                      Delivered
+                    </option>
+
+                    <option value="cancelled">
+                      Cancelled
+                    </option>
                   </select>
 
                 </div>
@@ -133,7 +162,10 @@ const AdminOrders = () => {
                 <h4>Products</h4>
 
                 {order.products?.map((item, index) => (
-                  <div className="order-product" key={index}>
+                  <div
+                    className="order-product"
+                    key={index}
+                  >
 
                     <span>
                       {item.product?.name || "Product"}
@@ -155,7 +187,8 @@ const AdminOrders = () => {
               <div className="order-bottom">
 
                 <div>
-                  <strong>Total:</strong> Rs.{" "}
+                  <strong>Total:</strong>{" "}
+                  Rs.{" "}
                   {Number(order.totalAmount).toFixed(2)}
                 </div>
 
@@ -166,7 +199,9 @@ const AdminOrders = () => {
 
                 <div>
                   <strong>Date:</strong>{" "}
-                  {new Date(order.createdAt).toLocaleDateString()}
+                  {new Date(
+                    order.createdAt
+                  ).toLocaleDateString()}
                 </div>
 
               </div>
@@ -182,3 +217,4 @@ const AdminOrders = () => {
 };
 
 export default AdminOrders;
+

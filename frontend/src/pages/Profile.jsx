@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import API_URL from "../api";
 import "../styles/profile.css";
 
 const Profile = () => {
@@ -18,8 +19,8 @@ const Profile = () => {
           return;
         }
 
-        const res = await fetch(
-          "http://localhost:5000/api/orders/my-orders",
+       const res = await fetch(
+  `${API_URL}/api/orders/my-orders`,
           {
             method: "GET",
             headers: {

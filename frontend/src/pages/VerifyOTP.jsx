@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import API_URL from "../api";
 import "../styles/auth.css";
 
 const VerifyOTP = () => {
@@ -25,7 +26,7 @@ const VerifyOTP = () => {
       setLoading(true);
 
       const res = await fetch(
-        "http://localhost:5000/api/auth/verify-otp",
+  `${API_URL}/api/auth/verify-otp`,
         {
           method: "POST",
 
